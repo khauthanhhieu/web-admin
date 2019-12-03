@@ -35,8 +35,10 @@ class Login extends React.Component {
             </Form.Group>
             <Alert show={this.props.mess !== undefined} variant="warning">{ this.props.mess }</Alert>
             <Form.Group>
-              <Button variant="primary" type="submit">Đăng nhập</Button>
-              <Alert.Link href="/register">Đăng kí</Alert.Link>
+              <Button variant="primary" size="lg" type="submit" block>Đăng nhập</Button>
+              hoặc
+              {' '}
+              <Alert.Link href="/register">Đăng kí !</Alert.Link>
             </Form.Group>
           </Form>
         </Col>
