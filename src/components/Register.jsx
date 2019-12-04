@@ -29,7 +29,7 @@ class Register extends React.Component {
     return (
       <Container>
         <Col md={{ span: 6, offset: 3 }}>
-          <h1>Tạo tài khoản</h1>
+          <h1>Thêm tài khoản quản trị</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>
               <Form.Label>Họ và tên</Form.Label>
@@ -53,7 +53,7 @@ class Register extends React.Component {
               <Form.Control id="repassword" name="repassword" type="password" />
             </Form.Group>
             <Form.Group>
-              <Button type="submit">Đăng kí</Button>
+              <Button type="submit" size="lg" block>Đăng kí</Button>
               <Alert color="primary">
                 Bạn đã có tài khoản ?
                 <Alert.Link href="/login"> Đăng nhập ngay </Alert.Link>

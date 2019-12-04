@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Route, BrowserRouter as Router,
 } from 'react-router-dom';
-import { Login, Register } from './components';
+import { Login, Register, Dashboard } from './components';
 import { PrivateRoute } from './components/helper';
 import './App.css';
 
@@ -11,8 +11,15 @@ function App() {
     <div className="App">
       <Router>
         <div className="main-route-place">
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <PrivateRoute exact path="/">
+            <Dashboard />
+          </PrivateRoute>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
         </div>
       </Router>
     </div>
