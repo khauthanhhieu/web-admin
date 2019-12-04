@@ -8,6 +8,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log("Login")
   }
 
   handleSubmit(event) {
@@ -33,7 +34,7 @@ class Login extends React.Component {
               <Form.Label>Mật khẩu : </Form.Label>
               <Form.Control id="password" name="password" type="password" />
             </Form.Group>
-            <Alert show={this.props.mess !== undefined} variant="warning">{ this.props.mess }</Alert>
+            <Alert show={this.props.mess !== undefined} variant="warning">{this.props.mess}</Alert>
             <Form.Group>
               <Button variant="primary" size="lg" type="submit" block>Đăng nhập</Button>
               hoặc
