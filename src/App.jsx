@@ -11,15 +11,9 @@ function App() {
     <div className="App">
       <Router>
         <div className="main-route-place">
-          <PrivateRoute exact path="/">
-            <Dashboard />
-          </PrivateRoute>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
+          <PrivateRoute exact path="/" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </div>
       </Router>
     </div>

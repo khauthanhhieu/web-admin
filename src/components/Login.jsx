@@ -41,6 +41,8 @@ class Login extends React.Component {
   }
 
   render() {
+    const a = Cookies.get('user');
+    console.log(a)
     return (
       <Container>
         <Col md={{ span: 6, offset: 3 }}>
