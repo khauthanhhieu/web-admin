@@ -8,8 +8,8 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <div className="App fill-window">
+      <Router className="fill-window">
         <div className="main-route-place">
           <PrivateRoute exact path="/" component={Dashboard} />
           <Route path="/login" component={Login} />

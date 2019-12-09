@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Form, Alert, Container, Col,
+  Button, Form, Alert, Container, Col, Card
 } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router-dom';
@@ -41,37 +41,48 @@ class Login extends React.Component {
   }
 
   render() {
-    const a = Cookies.get('user');
-    console.log(a)
     return (
       <Container>
+        <br />
+        <br />
         <Col md={{ span: 6, offset: 3 }}>
-          <h1>Đăng nhập</h1>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group>
-              <Form.Label>Tên người dùng : </Form.Label>
-              <Form.Control id="username" name="username" type="text" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Mật khẩu : </Form.Label>
-              <Form.Control id="password" name="password" type="password" />
-            </Form.Group>
-            <Alert show={this.props.mess !== undefined} variant="warning">{this.props.mess}</Alert>
-            <Form.Group>
-              <Button variant="primary" size="lg" type="submit" block>Đăng nhập</Button>
-              <p className="d-flex justify-content-center">Hoặc</p>
-              <div className="d-flex justify-content-around">
-                <button type="button" className="btn btn-fb">
-                  <i className="fab fa-facebook-f pr-1" />
-                  Facebook
-                </button>
-                <button type="button" className="btn btn-gplus">
-                  <i className="fab fa-google-plus-g pr-1" />
-                  Google +
-                </button>
-              </div>
-            </Form.Group>
-          </Form>
+          <Card>
+            <Card.Body>
+              <Card.Title>
+                <h2 className="text-center">Đăng nhập</h2>
+              </Card.Title>
+              <Card.Text>
+                <Form className="p-5" onSubmit={this.handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>Tên người dùng : </Form.Label>
+                    <Form.Control id="username" name="username" type="text" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Mật khẩu : </Form.Label>
+                    <Form.Control id="password" name="password" type="password" />
+                  </Form.Group>
+                  <Alert show={this.props.mess !== undefined} variant="warning">{this.props.mess}</Alert>
+                  <Form.Group>
+                    <Button variant="primary" size="lg" type="submit" block>Đăng nhập</Button>
+                    <p className="d-flex justify-content-center">Hoặc</p>
+                    <div className="d-flex justify-content-around">
+                      <button type="button" className="btn btn-fb">
+                        <i className="fab fa-facebook-f pr-1" />
+                        Facebook
+                  </button>
+                      <button type="button" className="btn btn-gplus">
+                        <i className="fab fa-google-plus-g pr-1" />
+                        Google +
+                  </button>
+                    </div>
+                  </Form.Group>
+                </Form>
+              </Card.Text>
+
+            </Card.Body>
+
+          </Card>
+
         </Col>
       </Container>
     );
