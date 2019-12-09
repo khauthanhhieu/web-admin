@@ -1,43 +1,32 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import {
-  Button, Form, Alert, Container, Col, Card
+  Button, Form, Alert, Container, Col, Card,
 } from 'react-bootstrap';
-import Cookies from 'js-cookie';
 import { withRouter } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log("Login")
-  }
-
-  async login(username, password) {
-    return await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    }).then((res) => res.json())
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
+    const username = data.get('username');
+    const password = data.get('password');
     // eslint-disable-next-line react/prop-types
-    var username = data.get("username")
-    var password = data.get("password")
-    this.login(username, password).then((result) => {
+    this.props.onLogin(username, password).then((result) => {
+      console.log(result)
       if (result.code === 0) {
         Cookies.set('user', result.data);
       }
       this.props.history.push('/');
-    })
-
+    });
   }
 
   render() {
@@ -69,24 +58,31 @@ class Login extends React.Component {
                       <button type="button" className="btn btn-fb">
                         <i className="fab fa-facebook-f pr-1" />
                         Facebook
-                  </button>
+                      </button>
                       <button type="button" className="btn btn-gplus">
                         <i className="fab fa-google-plus-g pr-1" />
                         Google +
-                  </button>
+                      </button>
                     </div>
                   </Form.Group>
                 </Form>
               </Card.Text>
-
             </Card.Body>
-
           </Card>
-
         </Col>
       </Container>
     );
   }
 }
 
-export default withRouter(Login);
+// export default withRouter(Login);
+const mapStateToProps = (state) => ({
+  authed: state.authentication.authed,
+  user: state.authentication.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLogin: (username, password) => dispatch(actions.login(username, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
