@@ -16,7 +16,7 @@ export function login(username, password) {
       }),
     }).then((res) => res.json())
     dispatch({
-      type: LOGIN, token: result.token, user,
+      //type: LOGIN, token: result.token, user,
     });
   }
 }

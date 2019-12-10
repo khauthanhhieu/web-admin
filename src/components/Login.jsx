@@ -33,7 +33,6 @@ class Login extends React.Component {
     return (
       <Container>
         <br />
-        <br />
         <Col md={{ span: 6, offset: 3 }}>
           <Card>
             <Card.Body>
