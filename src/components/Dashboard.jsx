@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from './Header'
+import Header from './Header';
+import Menu from './Menu';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -8,7 +9,10 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Header/>
+      <div>
+        <Header/>
+        <Menu />
+      </div>
     )
   }
 }

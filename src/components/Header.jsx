@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Navbar, NavDropdown, Form, Nav, FormControl, Button,
+  Navbar, NavDropdown, Nav,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="light" expand="lg">
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             <Nav.Link as={Link} to="/">Trang Chủ</Nav.Link>
