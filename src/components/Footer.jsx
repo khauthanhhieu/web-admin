@@ -1,46 +1,64 @@
-import React from "react";
-import {
- MDBCol, MDBContainer, MDBRow, MDBFooter,
-} from 'mdbreact';
+import React from 'react';
 
-const FooterPage = () => {
-  return (
-    <MDBFooter color="blue" className="font-small pt-4 mt-4">
-      <MDBContainer fluid className="text-center text-md-left">
-        <MDBRow>
-          <MDBCol md="6">
-            <h5 className="title">Footer Content</h5>
-            <p>
-              Here you can use rows and columns here to organize your footer
-              content.
-            </p>
-          </MDBCol>
-          <MDBCol md="6">
-            <h5 className="title">Links</h5>
-            <ul>
-              <li className="list-unstyled">
-                <a href="#!">Link 1</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 2</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 3</a>
-              </li>
-              <li className="list-unstyled">
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      <div className="footer-copyright text-center py-3">
-        <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-        </MDBContainer>
-      </div>
-    </MDBFooter>
-  );
+class Footer extends React.Component {
+
+    render() {
+        return (
+            <div className="footer">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h3>Gia sư online</h3>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div className="col-md-3">
+                            <h3>Trang web</h3>
+                            <ul>
+                                <li>Thông tin</li>
+                                <li>Kinh nghiệm</li>
+                                <li>Tham gia với chúng tôi</li>
+                                <li>Thành viên</li>
+                                <li>Phản hồi</li>
+                            </ul>
+                        </div>
+                        <div className="col-md-3">
+                            <h3>Hỗ trợ</h3>
+                            <ul>
+                                <li>Chính sách và điều khoản</li>
+                                <li>Riêng tư</li>
+                                <li>Kết nối với chúng tôi</li>
+                                <li>Trung tâm hỗ trợ</li>
+                                <li>Bản đồ</li>
+                            </ul>
+                        </div>
+                        <div className="col-md-3">
+                            <h3>Mục khác</h3>
+                            <ul className="network">
+                                <li><i className="fa fa-facebook-square"></i></li>
+                                <li><i className="fa fa-twitter-square"></i></li>
+                                <li><i className="fa fa-instagram"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div className="container register">
+                    <div className="row">
+                        <div className="col">
+                            <p>Trường Đại học Khoa học Tự nhiên Hồ Chí Minh</p>
+                            <p>227 Đường Nguyễn Văn Cừ, Phường 4, Quận 5, Hồ Chí Minh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default FooterPage;
+export default Footer;

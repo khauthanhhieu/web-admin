@@ -11,3 +11,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.footer ul.network li {
+  display: inline-block;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.container.register p {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 10px;
+  font-weight: 100;
+}
+
+.container.register {
+  font-size: 12px;
+  font-weight: 100;
+  padding: 15px 0;
+}
+.footer ul li.fa {
+  display: inline-block;
+}
+
+.footer ul li {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.footer h3 {
+  font-size: 20px;
+  padding: 10px 0;
+  font-weight: 500;
+}
+
+.footer {
+  background: #363535;
+  color: white;
+  padding-top: 30px;
+  margin-top: 50px;
+}
+
+.footer ul {
+  list-style: none;
+}

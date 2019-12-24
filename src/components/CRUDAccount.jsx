@@ -15,7 +15,7 @@ class Menu extends Component {
           Disabled
         </Nav.Link>
       </Nav>
-    )
+    );
   }
 }
 
