@@ -1,5 +1,7 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,7 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DescriptionIcon from '@material-ui/icons/Description';
+import Fab from '@material-ui/core/Fab';
 import Title from './Title';
+import FormAccount from './FormAccount';
 import MenuBar from './MenuBar';
 
 // Generate Order Data
@@ -112,6 +116,12 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function AccountList() {
@@ -127,7 +137,7 @@ export default function AccountList() {
     <div className={classes.root}>
       <MenuBar />
       <main className={classes.content}>
-        <Title>Danh sách tài khoản người dùng</Title>
+        <Title className={classes.title}>Danh sách tài khoản người dùng</Title>
         <Table size="small">
           <TableHead>
             <TableRow>

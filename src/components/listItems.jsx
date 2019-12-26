@@ -25,7 +25,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Quản lí người dùng" />
     </ListItem>
-    <ListItem button component="a" href="/account-list">
+    <ListItem button component="a" href="/skill-list">
       <ListItemIcon>
         <FitnessCenterIcon />
       </ListItemIcon>

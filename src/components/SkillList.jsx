@@ -1,4 +1,7 @@
 import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,7 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DescriptionIcon from '@material-ui/icons/Description';
+import Fab from '@material-ui/core/Fab';
 import Title from './Title';
+import FormAccount from './FormAccount';
 import MenuBar from './MenuBar';
 
 // Generate Order Data
@@ -96,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     overflow: 'auto',
     marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(4),
+    marginLeft: theme.spacing(3),
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -111,6 +116,12 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function AccountList() {
@@ -122,19 +133,34 @@ export default function AccountList() {
     </IconButton>
   );
 
+  const deleteIcon = (
+    <IconButton>
+      <DeleteIcon color="secondary" />
+    </IconButton>
+  );
+
+  const editIcon = (
+    <IconButton>
+      <EditIcon color="primary" />
+    </IconButton>
+  );
+
   return (
     <div className={classes.root}>
       <MenuBar />
       <main className={classes.content}>
-        <Title>Danh sách tài khoản người dùng</Title>
+        <Title>Quản lí hệ thống kỹ năng</Title>
+        <FormAccount />
+        <Fab size="medium" color="primary" aria-label="add" className={classes.margin}>
+          <AddIcon />
+        </Fab>
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Tên</TableCell>
-              <TableCell>Ngày sinh</TableCell>
-              <TableCell>Địa chỉ</TableCell>
-              <TableCell>Chi tiết</TableCell>
-              <TableCell>Khoá</TableCell>
+              <TableCell>Loại kỹ năng</TableCell>
+              <TableCell>Tên kỹ năng</TableCell>
+              <TableCell>Sửa</TableCell>
+              <TableCell>Xoá</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -142,11 +168,9 @@ export default function AccountList() {
               <TableRow key={row.id}>
                 <TableCell>{row.date}</TableCell>
                 <TableCell>{row.name}</TableCell>
-                <TableCell>{row.shipTo}</TableCell>
                 <TableCell>{detailIcon}</TableCell>
-                <TableCell padding="checkbox">
-                  <Checkbox />
-                </TableCell>
+                <TableCell>{editIcon}</TableCell>
+                <TableCell>{deleteIcon}</TableCell>
               </TableRow>
             ))}
           </TableBody>

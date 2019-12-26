@@ -12,6 +12,7 @@ import { PrivateRoute } from './components/helper';
 import './App.css';
 import Orders from './components/Orders';
 import AccountList from './components/AccountList';
+import SkillList from './components/SkillList';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/orders" component={Orders} />
           <Route path="/account-list" component={AccountList} />
+          <Route path="/skill-list" component={SkillList} />
           <Route path="/register" component={Register} />
         </div>
       </Router>
