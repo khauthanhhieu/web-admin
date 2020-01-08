@@ -7,13 +7,13 @@ import ContactsIcon from '@material-ui/icons/Contacts';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import ChatIcon from '@material-ui/icons/Chat';
-import LayersIcon from '@material-ui/icons/Layers';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button component="a" href="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -31,13 +31,13 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Quản lí kỹ năng" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/contract-list">
       <ListItemIcon>
         <ContactsIcon />
       </ListItemIcon>
       <ListItemText primary="Quản lí hợp đồng" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/complain-list">
       <ListItemIcon>
         <ChatIcon />
       </ListItemIcon>
@@ -48,24 +48,24 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
+    <ListSubheader inset>Thống kê</ListSubheader>
+    <ListItem button component="a" href="/week-report">
       <ListItemIcon>
-        <AssignmentIcon />
+        <EqualizerIcon />
       </ListItemIcon>
-      <ListItemText primary="Current month" />
+      <ListItemText primary="Theo tuần" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
+      <ListItemText primary="Theo tháng" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
+      <ListItemText primary="Theo năm" />
     </ListItem>
   </div>
 );

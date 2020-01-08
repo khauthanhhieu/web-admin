@@ -13,6 +13,7 @@ import './App.css';
 import Orders from './components/Orders';
 import AccountList from './components/AccountList';
 import SkillList from './components/SkillList';
+import WeekReport from './components/WeekReport';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/orders" component={Orders} />
           <Route path="/account-list" component={AccountList} />
+          <Route path="/week-report" component={WeekReport} />
           <Route path="/skill-list" component={SkillList} />
           <Route path="/register" component={Register} />
         </div>

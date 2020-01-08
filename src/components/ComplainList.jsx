@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,41 +9,33 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
-
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import DescriptionIcon from '@material-ui/icons/Description';
+import Fab from '@material-ui/core/Fab';
 import Title from './Title';
-import FormSkill from './FormSkill';
+import FormAccount from './FormAccount';
 import MenuBar from './MenuBar';
 
 // Generate Order Data
-// function createData(id, date, name, shipTo, paymentMethod, amount) {
-//   return {
-//     id,
-//     date,
-//     name,
-//     shipTo,
-//     paymentMethod,
-//     amount,
-//   };
-// }
-
-// const rows = [
-//   createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-//   createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-//   createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-//   createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-//   createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
-// ];
-// localStorage.setItem('rows', JSON.stringify(rows));
-const drawerWidth = 240;
-function createData(id, nameCart, nameSkill) {
+function createData(id, date, name, shipTo, paymentMethod, amount) {
   return {
     id,
-    nameCart,
-    nameSkill,
+    date,
+    name,
+    shipTo,
+    paymentMethod,
+    amount,
   };
 }
+
+const rows = [
+  createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
+  createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
+  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
+  createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
+  createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
+];
+const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -130,8 +123,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AccountList = ({ rows }) => {
+export default function AccountList() {
   const classes = useStyles();
+
   const deleteIcon = (
     <IconButton>
       <DeleteIcon color="secondary" />
@@ -149,7 +143,10 @@ const AccountList = ({ rows }) => {
       <MenuBar />
       <main className={classes.content}>
         <Title>Quản lí hệ thống kỹ năng</Title>
-        <FormSkill />
+        <FormAccount />
+        <Fab size="medium" color="primary" aria-label="add" className={classes.margin}>
+          <AddIcon />
+        </Fab>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -162,8 +159,8 @@ const AccountList = ({ rows }) => {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>{row.nameCart}</TableCell>
-                <TableCell>{row.nameSkill}</TableCell>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.name}</TableCell>
                 <TableCell>{editIcon}</TableCell>
                 <TableCell>{deleteIcon}</TableCell>
               </TableRow>
@@ -173,24 +170,4 @@ const AccountList = ({ rows }) => {
       </main>
     </div>
   );
-};
-AccountList.propTypes = {
-  rows: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      date: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      shipTo: PropTypes.string.isRequired,
-      paymentMethod: PropTypes.string.isRequired,
-      amount: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  rows: state.skill,
-});
-export default connect(
-  mapStateToProps,
-  null,
-)(AccountList);
+}

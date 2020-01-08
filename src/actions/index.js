@@ -1,7 +1,4 @@
-import Cookies from 'js-cookie';
-import {
-  LOGIN, LOGOUT, REGISTER,
-} from './types';
+import * as types from './types';
 
 export function login(username, password) {
   return async (dispatch) => {
@@ -14,9 +11,18 @@ export function login(username, password) {
         username,
         password,
       }),
-    }).then((res) => res.json())
+    }).then((res) => res.json());
     dispatch({
-      //type: LOGIN, token: result.token, user,
+      // type: LOGIN, token: result.token, user,
     });
-  }
+  };
 }
+
+export const listAll = () => ({
+  type: types.LIST_ALL,
+});
+
+export const addGridSkill = (skill) => ({
+  type: types.ADD_SKILL,
+  skill,
+});

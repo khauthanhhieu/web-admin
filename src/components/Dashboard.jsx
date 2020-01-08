@@ -36,7 +36,22 @@ function Copyright() {
     </Typography>
   );
 }
+function createData(id, nameCart, nameSkill) {
+  return {
+    id,
+    nameCart,
+    nameSkill,
+  };
+}
 
+const rows = [
+  createData(0, 'Lập trình', 'C/C++'),
+  createData(1, 'Ngoại ngữ', 'Kỹ năng giao tiếp'),
+  createData(2, 'Tự nhiên', 'Toán học'),
+  createData(3, 'Xã hội', 'Địa lý học'),
+  createData(4, 'Hội hoạ', 'Mỹ thuật'),
+];
+localStorage.setItem('rows', JSON.stringify(rows));
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
