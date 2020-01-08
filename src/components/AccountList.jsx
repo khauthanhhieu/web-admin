@@ -1,7 +1,4 @@
 import React from 'react';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,32 +6,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import DescriptionIcon from '@material-ui/icons/Description';
-import Fab from '@material-ui/core/Fab';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Title from './Title';
-import FormAccount from './FormAccount';
 import MenuBar from './MenuBar';
 
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return {
-    id,
-    date,
-    name,
-    shipTo,
-    paymentMethod,
-    amount,
-  };
-}
-
-const rows = [
-  createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-  createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-  createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
-];
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -124,15 +100,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AccountList() {
+const AccountList = ({ accountList }) => {
   const classes = useStyles();
-
-  const detailIcon = (
-    <IconButton button component="a" href="/login">
-      <DescriptionIcon />
-    </IconButton>
-  );
-
+  console.log(accountList);
   return (
     <div className={classes.root}>
       <MenuBar />
@@ -144,17 +114,15 @@ export default function AccountList() {
               <TableCell>Tên</TableCell>
               <TableCell>Ngày sinh</TableCell>
               <TableCell>Địa chỉ</TableCell>
-              <TableCell>Chi tiết</TableCell>
               <TableCell>Khoá</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {accountList.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>{row.date}</TableCell>
                 <TableCell>{row.name}</TableCell>
-                <TableCell>{row.shipTo}</TableCell>
-                <TableCell>{detailIcon}</TableCell>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.address}</TableCell>
                 <TableCell padding="checkbox">
                   <Checkbox />
                 </TableCell>
@@ -165,4 +133,23 @@ export default function AccountList() {
       </main>
     </div>
   );
-}
+};
+
+AccountList.propTypes = {
+  accountList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  accountList: state.account,
+});
+export default connect(
+  mapStateToProps,
+  null,
+)(AccountList);

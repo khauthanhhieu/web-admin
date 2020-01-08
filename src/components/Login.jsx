@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { loginUser } from '../actions/authentication';
 
 class Login extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Login extends React.Component {
     const password = data.get('password');
     // eslint-disable-next-line react/prop-types
     this.props.onLogin(username, password).then((result) => {
-      console.log(result)
+      console.log(result);
       if (result.code === 0) {
         Cookies.set('user', result.data);
       }
@@ -81,7 +82,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogin: (username, password) => dispatch(actions.login(username, password)),
+  onLogin: (username, password) => dispatch(loginUser(username, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

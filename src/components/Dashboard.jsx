@@ -44,6 +44,45 @@ function createData(id, nameCart, nameSkill) {
   };
 }
 
+function createData1(id, name, date, address) {
+  return {
+    id,
+    name,
+    date,
+    address,
+  };
+}
+function createData2(id, name, message) {
+  return {
+    id,
+    name,
+    message,
+  };
+}
+
+function createData3(id, nameContract, nameCart) {
+  return {
+    id,
+    nameContract,
+    nameCart,
+  };
+}
+function createData4(time, amount) {
+  return { time, amount };
+}
+
+const dataWeek = [
+  createData4('00:00', 0),
+  createData4('03:00', 300),
+  createData4('06:00', 600),
+  createData4('09:00', 800),
+  createData4('12:00', 1500),
+  createData4('15:00', 2000),
+  createData4('18:00', 2400),
+  createData4('21:00', 2400),
+  createData4('24:00', undefined),
+];
+localStorage.setItem('dataWeek', JSON.stringify(dataWeek));
 const rows = [
   createData(0, 'Lập trình', 'C/C++'),
   createData(1, 'Ngoại ngữ', 'Kỹ năng giao tiếp'),
@@ -52,6 +91,30 @@ const rows = [
   createData(4, 'Hội hoạ', 'Mỹ thuật'),
 ];
 localStorage.setItem('rows', JSON.stringify(rows));
+const contractList = [
+  createData3(0, 'Dài hạn', 'Hợp đồng chính thức'),
+  createData3(1, 'Ngắn hạn', 'Hợp đồng thời vụ'),
+];
+localStorage.setItem('contractList', JSON.stringify(contractList));
+const accountList = [
+  createData1(0, 'Nguyễn Quang Huy', '23/02/1997', 'Quận 7, HCM'),
+  createData1(1, 'Nguyễn Thái Sơn', '18/02/1997', 'Quận 2, HCM'),
+  createData1(2, 'Trần Dần', '23/02/1997', 'Quận 3, HCM'),
+  createData1(3, 'Đặng Côn', '23/02/1997', 'Quận 5, HCM'),
+  createData1(4, 'Long Tứ', '23/02/1997', 'Quận 9, HCM'),
+];
+
+localStorage.setItem('accountList', JSON.stringify(accountList));
+
+const complainList = [
+  createData2(0, 'Nguyễn Quang Huy', 'Khoá học tốt'),
+  createData2(1, 'Nguyễn Thái Sơn', 'Chưa hiểu về khoá học'),
+  createData2(2, 'Trần Dần', 'Nội dung quá dài dòng'),
+  createData2(3, 'Đặng Côn', 'Nội dung không sát thực tế'),
+  createData2(4, 'Long Tứ', 'Chưa hiểu được nội dung'),
+];
+
+localStorage.setItem('complainList', JSON.stringify(complainList));
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   toolbarIcon: {
     display: 'flex',

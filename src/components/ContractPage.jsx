@@ -1,6 +1,5 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,33 +8,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
-import DescriptionIcon from '@material-ui/icons/Description';
-import Fab from '@material-ui/core/Fab';
+
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Title from './Title';
-import FormAccount from './FormAccount';
+import FormContract from './FormContract';
 import MenuBar from './MenuBar';
+import * as action from '../actions/index';
 
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return {
-    id,
-    date,
-    name,
-    shipTo,
-    paymentMethod,
-    amount,
-  };
-}
-
-const rows = [
-  createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-  createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-  createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-  createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
-];
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -123,24 +104,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AccountList() {
+const ContractList = ({ rows, onDeleteRow, onUpdateRow }) => {
   const classes = useStyles();
-
-  const detailIcon = (
-    <IconButton button component="a" href="/login">
-      <DescriptionIcon />
+  const deleteIcon = (row) => (
+    <IconButton>
+      <DeleteIcon
+        color="secondary"
+        onClick={(event) => {
+          event.preventDefault();
+          onDeleteRow(row);
+        }}
+      />
     </IconButton>
   );
 
-  const deleteIcon = (
+  const editIcon = (row) => (
     <IconButton>
-      <DeleteIcon color="secondary" />
-    </IconButton>
-  );
-
-  const editIcon = (
-    <IconButton>
-      <EditIcon color="primary" />
+      <EditIcon
+        color="primary"
+        onClick={(event) => {
+          event.preventDefault();
+          onUpdateRow(row);
+        }}
+      />
     </IconButton>
   );
 
@@ -148,16 +134,13 @@ export default function AccountList() {
     <div className={classes.root}>
       <MenuBar />
       <main className={classes.content}>
-        <Title>Quản lí danh sách hợp đồng</Title>
-        <FormAccount />
-        <Fab size="medium" color="primary" aria-label="add" className={classes.margin}>
-          <AddIcon />
-        </Fab>
+        <Title>Quản lí hợp đồng</Title>
+        <FormContract />
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Loại hợp đồng</TableCell>
               <TableCell>Tên hợp đồng</TableCell>
+              <TableCell>Loại hợp đồng</TableCell>
               <TableCell>Sửa</TableCell>
               <TableCell>Xoá</TableCell>
             </TableRow>
@@ -165,10 +148,10 @@ export default function AccountList() {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{editIcon}</TableCell>
-                <TableCell>{deleteIcon}</TableCell>
+                <TableCell>{row.nameCart}</TableCell>
+                <TableCell>{row.nameContract}</TableCell>
+                <TableCell>{editIcon(row)}</TableCell>
+                <TableCell>{deleteIcon(row.id)}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -176,4 +159,31 @@ export default function AccountList() {
       </main>
     </div>
   );
-}
+};
+ContractList.propTypes = {
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      nameContract: PropTypes.string.isRequired,
+      nameCart: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  onDeleteRow: PropTypes.func.isRequired,
+  onUpdateRow: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  rows: state.contract,
+});
+const mapDispatchToProps = (dispatch) => ({
+  onDeleteRow: (row) => {
+    dispatch(action.deleteRowContract(row));
+  },
+  onUpdateRow: (row) => {
+    dispatch(action.updateRowContract(row));
+  },
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ContractList);

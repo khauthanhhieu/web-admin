@@ -100,7 +100,7 @@ export default function AccountList() {
     <div className={classes.root}>
       <MenuBar />
       <main className={classes.content}>
-        <Title>Thống kê theo tuần</Title>
+        <Title>Thống kê theo tháng</Title>
         <Chart />
       </main>
     </div>

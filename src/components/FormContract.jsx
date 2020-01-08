@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as action from '../actions/index';
 
-class FormAccount extends React.Component {
+class FormContract extends React.Component {
   constructor() {
     super();
     this.state = {
       nameCart: '',
-      nameSkill: '',
+      nameContract: '',
     };
   }
 
@@ -23,12 +23,12 @@ class FormAccount extends React.Component {
     if (itemupdate) {
       this.setState({
         nameCart: itemupdate.nameCart,
-        nameSkill: itemupdate.nameSkill,
+        nameContract: itemupdate.nameContract,
       });
     } else {
       this.setState({
         nameCart: '',
-        nameSkill: '',
+        nameContract: '',
       });
     }
   }
@@ -37,19 +37,19 @@ class FormAccount extends React.Component {
     if (nextProps && nextProps.itemupdate) {
       this.setState({
         nameCart: nextProps.itemupdate.nameCart,
-        nameSkill: nextProps.itemupdate.nameSkill,
+        nameContract: nextProps.itemupdate.nameContract,
       });
     }
   }
 
   render() {
-    const { nameCart, nameSkill } = this.state;
+    const { nameCart, nameContract } = this.state;
     const { onAddGrid } = this.props;
 
     return (
       <>
         <FormControl>
-          <InputLabel htmlFor="my-input">Loại kỹ năng</InputLabel>
+          <InputLabel htmlFor="my-input">Ten hợp đồng</InputLabel>
           <Input
             id="my-input"
             aria-describedby="my-helper-text"
@@ -62,14 +62,14 @@ class FormAccount extends React.Component {
         </FormControl>
         <br />
         <FormControl>
-          <InputLabel htmlFor="my-input">Tên Kỹ năng</InputLabel>
+          <InputLabel htmlFor="my-input">Loại hợp đồng</InputLabel>
           <Input
             id="my-input"
             aria-describedby="my-helper-text"
-            value={nameSkill || ' '}
+            value={nameContract || ' '}
             onChange={(event) => {
               const { value } = event.target;
-              this.setState({ nameSkill: value });
+              this.setState({ nameContract: value });
             }}
           />
           <FormHelperText id="my-helper-text"> </FormHelperText>
@@ -79,7 +79,7 @@ class FormAccount extends React.Component {
         <Fab size="medium" color="primary" aria-label="add">
           <AddIcon onClick={(event) => {
             event.preventDefault();
-            onAddGrid({ nameCart, nameSkill });
+            onAddGrid({ nameCart, nameContract });
           }}
           />
         </Fab>
@@ -87,22 +87,22 @@ class FormAccount extends React.Component {
     );
   }
 }
-FormAccount.propTypes = {
+FormContract.propTypes = {
   onAddGrid: PropTypes.func.isRequired,
   itemupdate: PropTypes.shape({
     id: PropTypes.number.isRequired,
     nameCart: PropTypes.string.isRequired,
-    nameSkill: PropTypes.string.isRequired,
+    nameContract: PropTypes.string.isRequired,
   }).isRequired,
 };
 const mapStateToProps = (state) => ({
-  rows: state.skill,
+  rows: state.contract,
   itemupdate: state.itemupdate,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddGrid: (skill) => {
-    dispatch(action.addGridSkill(skill));
+  onAddGrid: (contract) => {
+    dispatch(action.addGridContract(contract));
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(FormAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(FormContract);

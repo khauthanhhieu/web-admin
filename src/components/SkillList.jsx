@@ -14,35 +14,9 @@ import PropTypes from 'prop-types';
 import Title from './Title';
 import FormSkill from './FormSkill';
 import MenuBar from './MenuBar';
+import * as action from '../actions/index';
 
-// Generate Order Data
-// function createData(id, date, name, shipTo, paymentMethod, amount) {
-//   return {
-//     id,
-//     date,
-//     name,
-//     shipTo,
-//     paymentMethod,
-//     amount,
-//   };
-// }
-
-// const rows = [
-//   createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-//   createData(1, '16 Mar, 2019', 'Paul McCartney', 'London, UK', 'VISA ⠀•••• 2574', 866.99),
-//   createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-//   createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
-//   createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
-// ];
-// localStorage.setItem('rows', JSON.stringify(rows));
 const drawerWidth = 240;
-function createData(id, nameCart, nameSkill) {
-  return {
-    id,
-    nameCart,
-    nameSkill,
-  };
-}
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -130,17 +104,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AccountList = ({ rows }) => {
+const SkillList = ({ rows, onDeleteRow, onUpdateRow }) => {
   const classes = useStyles();
-  const deleteIcon = (
+  const deleteIcon = (row) => (
     <IconButton>
-      <DeleteIcon color="secondary" />
+      <DeleteIcon
+        color="secondary"
+        onClick={(event) => {
+          event.preventDefault();
+          onDeleteRow(row);
+        }}
+      />
     </IconButton>
   );
 
-  const editIcon = (
+  const editIcon = (row) => (
     <IconButton>
-      <EditIcon color="primary" />
+      <EditIcon
+        color="primary"
+        onClick={(event) => {
+          event.preventDefault();
+          onUpdateRow(row);
+        }}
+      />
     </IconButton>
   );
 
@@ -164,8 +150,8 @@ const AccountList = ({ rows }) => {
               <TableRow key={row.id}>
                 <TableCell>{row.nameCart}</TableCell>
                 <TableCell>{row.nameSkill}</TableCell>
-                <TableCell>{editIcon}</TableCell>
-                <TableCell>{deleteIcon}</TableCell>
+                <TableCell>{editIcon(row)}</TableCell>
+                <TableCell>{deleteIcon(row.id)}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -174,23 +160,30 @@ const AccountList = ({ rows }) => {
     </div>
   );
 };
-AccountList.propTypes = {
+SkillList.propTypes = {
   rows: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      date: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      shipTo: PropTypes.string.isRequired,
-      paymentMethod: PropTypes.string.isRequired,
-      amount: PropTypes.string.isRequired,
+      nameCart: PropTypes.string.isRequired,
+      nameSkill: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  onDeleteRow: PropTypes.func.isRequired,
+  onUpdateRow: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   rows: state.skill,
 });
+const mapDispatchToProps = (dispatch) => ({
+  onDeleteRow: (row) => {
+    dispatch(action.deleteRowSkill(row));
+  },
+  onUpdateRow: (row) => {
+    dispatch(action.updateRowSkill(row));
+  },
+});
 export default connect(
   mapStateToProps,
-  null,
-)(AccountList);
+  mapDispatchToProps,
+)(SkillList);

@@ -7,17 +7,21 @@ import { logoutUser } from '../actions/authentication';
 class Navbar extends Component {
   onLogout(e) {
     e.preventDefault();
-     this.props.logoutUser(this.props.history);
+    this.props.logoutUser(this.props.history);
   }
 
   render() {
-     const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated, user } = this.props.auth;
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <a href="" className="nav-link" onClick={this.onLogout.bind(this)}>
-          <img src={user.avatar} alt={user.name} title={user.name}
-              className="rounded-circle"
-              style={{ width: '25px', marginRight: '5px'}} />
+          <img
+            src={user.avatar}
+            alt={user.name}
+            title={user.name}
+            className="rounded-circle"
+            style={{ width: '25px', marginRight: '5px' }}
+          />
               Logout
         </a>
       </ul>
@@ -26,7 +30,7 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/sign-up">Đăng ký</Link>
+          <Link className="nav-link" to="/login">Đăng ký</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/sign-in">Đăng nhập</Link>
@@ -46,11 +50,11 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth
-})
+  auth: state.auth,
+});
 
 export default connect(mapStateToProps, { logoutUser })(withRouter(Navbar));

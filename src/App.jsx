@@ -14,6 +14,8 @@ import Orders from './components/Orders';
 import AccountList from './components/AccountList';
 import SkillList from './components/SkillList';
 import WeekReport from './components/WeekReport';
+import ComplainList from './components/ComplainList';
+import ContractList from './components/ContractPage';
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route path="/login" component={Login} />
           <Route path="/orders" component={Orders} />
+          <Route path="/complain-list" component={ComplainList} />
           <Route path="/account-list" component={AccountList} />
           <Route path="/week-report" component={WeekReport} />
           <Route path="/skill-list" component={SkillList} />
+          <Route path="/contract-list" component={ContractList} />
           <Route path="/register" component={Register} />
         </div>
       </Router>
