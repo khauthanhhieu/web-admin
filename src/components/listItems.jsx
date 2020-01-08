@@ -55,7 +55,7 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Theo tuần" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/month-report">
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>

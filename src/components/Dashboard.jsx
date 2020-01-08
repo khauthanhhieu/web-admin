@@ -82,6 +82,45 @@ const dataWeek = [
   createData4('21:00', 2400),
   createData4('24:00', undefined),
 ];
+const dataMonth = [
+  {
+    month: 'Tháng 1', value: 4000,
+  },
+  {
+    month: 'Tháng 2', value: 3000,
+  },
+  {
+    month: 'Tháng 3', value: 2000,
+  },
+  {
+    month: 'Tháng 4', value: 2780,
+  },
+  {
+    month: 'Tháng 5', value: 1890,
+  },
+  {
+    month: 'Tháng 6', value: 2390,
+  },
+  {
+    month: 'Tháng 7', value: 3490,
+  },
+  {
+    month: 'Tháng 8', value: 2000,
+  },
+  {
+    month: 'Tháng 9', value: 2780,
+  },
+  {
+    month: 'Tháng 10', value: 1890,
+  },
+  {
+    month: 'Tháng 11', value: 2390,
+  },
+  {
+    month: 'Tháng 12', value: 3490,
+  },
+];
+localStorage.setItem('dataMonth', JSON.stringify(dataMonth));
 localStorage.setItem('dataWeek', JSON.stringify(dataWeek));
 const rows = [
   createData(0, 'Lập trình', 'C/C++'),

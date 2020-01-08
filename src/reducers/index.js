@@ -8,6 +8,7 @@ import itemupdate from './itemupdate';
 import complain from './complain';
 import contract from './contract';
 import weekChart from './weekChart';
+import monthChart from './monthChart';
 
 const myApp = combineReducers({
   errors: errorReducer,
@@ -19,5 +20,6 @@ const myApp = combineReducers({
   complain,
   contract,
   weekChart,
+  monthChart,
 });
 export default myApp;

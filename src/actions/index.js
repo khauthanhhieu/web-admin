@@ -67,3 +67,6 @@ export const updateRowContract = (row) => ({
 export const listWeekChart = () => ({
   type: types.LIST_ALL_WEEK_CHART,
 });
+export const listMonthChart = () => ({
+  type: types.LIST_ALL_MONTH_CHART,
+});

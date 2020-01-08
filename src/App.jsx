@@ -16,6 +16,7 @@ import SkillList from './components/SkillList';
 import WeekReport from './components/WeekReport';
 import ComplainList from './components/ComplainList';
 import ContractList from './components/ContractPage';
+import MonthReport from './components/MonthReport';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/complain-list" component={ComplainList} />
           <Route path="/account-list" component={AccountList} />
           <Route path="/week-report" component={WeekReport} />
+          <Route path="/month-report" component={MonthReport} />
           <Route path="/skill-list" component={SkillList} />
           <Route path="/contract-list" component={ContractList} />
           <Route path="/register" component={Register} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Title from './Title';
-import Chart from './Chart';
+import BarCharts from './MonthChart';
 import MenuBar from './MenuBar';
 
 const drawerWidth = 240;
@@ -101,7 +101,7 @@ export default function AccountList() {
       <MenuBar />
       <main className={classes.content}>
         <Title>Thống kê theo tháng</Title>
-        <Chart />
+        <BarCharts />
       </main>
     </div>
   );
